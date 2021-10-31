@@ -1,0 +1,1 @@
+line1\n cd /home/kraven/Documents/SEM7/Krypto
