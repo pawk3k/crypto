@@ -67,10 +67,8 @@ def merge_parts(List1, List2):
 mergedList = merge_parts(part1, part2)
 mergedList = list(map(lambda row: [(0 if pixel != 2 else 2)
                                    for pixel in row], mergedList))
-np.shape(mergedList)
 
 
-bresult = np.float64(bresult)
 bfinal = np.float64(mergedList)
 part1 = np.float64(part1)
 part2 = np.float64(part2)
