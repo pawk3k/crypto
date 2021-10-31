@@ -15,39 +15,38 @@ b = b/255
 b = [[math.floor(item) for item in row] for row in b]
 
 
-def flatten(List):
-    result = []
-    for item in List:
-        result = result + item
-    return result
+def split():
+    def flatten(List):
+        result = []
+        for item in List:
+            result = result + item
+        return result
 
+    c0 = [[[0, 1], [0, 1]], [[1, 0], [1, 0]]]
+    c1 = [[[1, 0], [0, 1]], [[0, 1], [1, 0]]]
 
-c0 = [[[0, 1], [0, 1]], [[1, 0], [1, 0]]]
-c1 = [[[1, 0], [0, 1]], [[0, 1], [1, 0]]]
+    part1 = []
+    part2 = []
 
-part1 = []
-part2 = []
+    def subPixels(pixel):
+        radnomNumber = randint(0, 1)
+        subpixels1 = c0[radnomNumber][0] if pixel == 0 else c1[radnomNumber][0]
+        subpixels2 = c0[radnomNumber][1] if pixel == 0 else c1[radnomNumber][1]
+        part1.append(subpixels1)
+        part2.append(subpixels2)
+        if(radnomNumber == 1):
+            return [0, 1]
+        return [1, 0]
 
+    def chunks(list, chunkLen):
+        return [list[i:i+chunkLen] for i in range(len(list))[::chunkLen]]
 
-def subPixels(pixel):
-    radnomNumber = randint(0, 1)
-    subpixels1 = c0[radnomNumber][0] if pixel == 0 else c1[radnomNumber][0]
-    subpixels2 = c0[radnomNumber][1] if pixel == 0 else c1[radnomNumber][1]
-    part1.append(subpixels1)
-    part2.append(subpixels2)
-    if(radnomNumber == 1):
-        return [0, 1]
-    return [1, 0]
+    list(map(lambda row: [subPixels(pixel) for pixel in row], b))
 
+    part1 = chunks(flatten(part1), 2 * len(b[0]))
+    part2 = chunks(flatten(part2), 2 * len(b[0]))
 
-def chunks(list, chunkLen):
-    return [list[i:i+chunkLen] for i in range(len(list))[::chunkLen]]
-
-
-bresult = list(map(lambda row: [subPixels(pixel) for pixel in row], b))
-
-part1 = chunks(flatten(part1), 2 * len(b[0]))
-part2 = chunks(flatten(part2), 2 * len(b[0]))
+    return [part1, part2]
 
 
 def merge_parts(List1, List2):
@@ -64,6 +63,7 @@ def merge_parts(List1, List2):
     return resultList
 
 
+[part1, part2] = split()
 mergedList = merge_parts(part1, part2)
 mergedList = list(map(lambda row: [(0 if pixel != 2 else 2)
                                    for pixel in row], mergedList))
