@@ -1,0 +1,33 @@
+<Window x:Class="Pogodski.GunCatalog.UI.ProducerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pogodski.GunCatalog.UI"
+        mc:Ignorable="d"
+        Title="ProducerWindow" Height="450" Width="800" Name="Window2">
+    <Grid>
+
+
+        <Grid.ColumnDefinitions>
+
+
+        
+            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" Name="ProducersList" ItemsSource="{Binding ElementName=Window2, Path=Producers}" DisplayMemberPath="Name" >
+        </ListBox>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <StackPanel>
+                <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Country:"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Grid.Column="1" Grid.Row="0" Content="{Binding ElementName=ProducersList, Path=SelectedItem.Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding ElementName=ProducersList, Path=SelectedItem.Country}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
