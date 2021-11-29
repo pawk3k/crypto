@@ -1,17 +1,3 @@
-// # X/N  !== 0  wzglednie pierwsze
-// # 4 testy losowosci 20 000
-// # test1
-// # n(1) - liczba 1
-// # test2
-// # 11100011
-// # dlugosc serii 111 = 3
-
-// # test3
-// # czy istnieje seria 26 lub wiecej
-
-// # test4
-// # test pokerowy
-
 const gcd = (a, b) => {
   if (b === 0) return a;
   return gcd(b, a % b);
@@ -28,7 +14,8 @@ const blumgenerator = () => {
   const p = 102871;
   const q = 61583;
   const n = p * q;
-  const x = 102329478;
+  const x = getX(n);
+  // const x = 102329478;
 
   const x0 = (x * x) % n;
   const array = new Array(3).fill(0);
